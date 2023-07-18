@@ -7,23 +7,23 @@
 # 该测试下的 fiber 内存占用：~10KB/fiber
 
 
-fiber = (ARGV[0]? || "1024").to_i
+fiber_count = (ARGV[0]? || "1024").to_i
 
 ch = Channel(Nil).new
 
 st = Time.monotonic
 
-fiber.times {
+fiber_count.times {
   spawn { 
     sleep 3
     ch.send nil
   }
 }
 
-fiber.times { ch.receive }
+fiber_count.times { ch.receive }
 
 ed = Time.monotonic
 elapsed = (ed-st).total_milliseconds
 
-puts "fiber: #{fiber}, elapsed: #{elapsed}ms"
+puts "fibers: #{fiber_count}, elapsed: #{elapsed}ms"
 

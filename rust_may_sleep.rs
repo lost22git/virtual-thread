@@ -12,16 +12,16 @@ fn main() {
     // get fiber count from args
     let mut args = std::env::args();
     args.next();
-    let fiber = args
+    let fiber_count = args
         .next()
         .and_then(|v| v.parse::<usize>().ok())
         .unwrap_or(1024);
 
-    let mut handles: Vec<may::coroutine::JoinHandle<()>> = Vec::with_capacity(fiber);
+    let mut handles: Vec<may::coroutine::JoinHandle<()>> = Vec::with_capacity(fiber_count);
 
     let st = std::time::Instant::now();
 
-    for _ in 1..=fiber {
+    for _ in 1..=fiber_count {
         let handle = unsafe {
             may::coroutine::spawn(|| {
                 // let st = std::time::Instant::now();
@@ -38,5 +38,5 @@ fn main() {
     }
 
     let elapsed = st.elapsed().as_millis();
-    println!("fiber: {fiber}, elapsed: {elapsed:?}ms");
+    println!("fibers: {fiber_count}, elapsed: {elapsed:?}ms");
 }

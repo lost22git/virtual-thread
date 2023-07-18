@@ -27,6 +27,6 @@ public class java_sleep {
     }
 
     long ed = System.nanoTime();
-    out.println("fiber: %d, elapsed: %dms".formatted(fiberCount, (ed-st)/1000_000));
+    out.println("fibers: %d, elapsed: %dms".formatted(fiberCount, (ed-st)/1000_000));
   }
 }
