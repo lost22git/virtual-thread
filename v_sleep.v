@@ -15,7 +15,7 @@ fn main() {
   sw := time.new_stopwatch()
 
 	for _ in 0 .. fiber_count {
-		threads << spawn fn () {
+		threads << go fn () {
       coroutines.sleep(3 * time.second)
     }()
   }

@@ -15,8 +15,11 @@ st = Time.monotonic
 
 fiber_count.times {
   spawn { 
-    sleep 3
-    ch.send nil
+    begin
+      sleep 3
+    ensure
+      ch.send nil
+    end
   }
 }
 
