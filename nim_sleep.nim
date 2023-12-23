@@ -1,3 +1,7 @@
+#[
+///usr/bin/env nim r -d:nimCoroutines "$0" "$@" ; exit $?
+]#
+
 import std/[strformat, strutils]
 import std/[os, cmdline]
 import std/[times, monotimes]
